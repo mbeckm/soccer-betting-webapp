@@ -1,20 +1,22 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
+import { getAuth } from 'firebase/auth'
+import { getFirestore, collection, getDocs } from 'firebase/firestore';
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyCU3ax95dOLXNm23X3m_uzvsL4HajJuKlM",
-  authDomain: "soccer-betting-app-ead10.firebaseapp.com",
-  projectId: "soccer-betting-app-ead10",
-  storageBucket: "soccer-betting-app-ead10.appspot.com",
-  messagingSenderId: "1003675292222",
-  appId: "1:1003675292222:web:a10d1cd4a375b817f8376f"
-};
+  apiKey: process.env.NEXT_PUBLIC_APIKEY,
+  authDomain: process.env.NEXT_PUBLIC_AUTHDOMAIN,
+  projectId: process.env.PROJECTID,
+  storageBucket: process.env.STORAGEBUCKET,
+  messagingSenderId: process.env.MESSAGINGSENDERID,
+  appId: process.env.APPID
+};  
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+export const auth = getAuth(app)
+export const db = getFirestore(app);
