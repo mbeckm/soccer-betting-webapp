@@ -4,7 +4,6 @@ import Navbar from './components/Navbar'
 export default function Register() {
   return (
     <div className="flex flex-col justify-center">
-        <Navbar />
         <div className="py-4 px-9 my-20 w-full sm:w-3/4 lg:w-2/4 max-w-5xlg border border-solid rounded-2xl flex flex-col self-center items-center">
             <h1 className="text-center my-8 text-4xl select-none font-bold">Register</h1>        
             <div className="mb-3 flex flex-col w-full md:w-3/4 lg:w-5/8 self-center">

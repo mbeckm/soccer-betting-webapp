@@ -34,7 +34,6 @@ export default function Dashboard() {
 
     return (
         <div className="flex flex-col">
-            <Navbar />
             <h1 className="my-14 mb-24 text-center font-bold text-4xl">Your bets</h1>
             <div className="flex flex-col items-center">
                 {matches.map((match) => (
