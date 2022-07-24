@@ -35,12 +35,12 @@ export default function Dashboard() {
     }
     console.log(matches);
 
-    const docRef = await addDoc(collection(db, 'bets'), {
-        username: session.user.username,
-        matchid: null,
-        bet: null,
-        timestamp: serverTimestamp(),
-    })
+    // const docRef = await addDoc(collection(db, 'bets'), {
+    //     username: session.user.username,
+    //     matchid: null,
+    //     bet: null,
+    //     timestamp: serverTimestamp(),
+    // })
 
     return (
         <div className="flex flex-col">
