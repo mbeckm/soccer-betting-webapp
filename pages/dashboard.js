@@ -1,11 +1,14 @@
+import { useSession } from 'next-auth/react';
 import React, { useEffect, useState } from 'react'
 import Matchup from './components/Matchup'
-import Navbar from './components/Navbar'
+import { db } from '../firebase'
+import { addDoc, serverTimestamp } from 'firebase/firestore';
 
 
 export default function Dashboard() {
     const [data, setData] = useState(null)
     const [isLoading, setLoading] = useState(false)
+    const { data: session } = useSession();
     
     useEffect(() => {
         setLoading(true)
@@ -32,35 +35,36 @@ export default function Dashboard() {
     }
     console.log(matches);
 
+    const docRef = await addDoc(collection(db, 'bets'), {
+        username: session.user.username,
+        matchid: null,
+        bet: null,
+        timestamp: serverTimestamp(),
+    })
+
     return (
         <div className="flex flex-col">
-            <h1 className="my-14 mb-24 text-center font-bold text-4xl">Your bets</h1>
-            <div className="flex flex-col items-center">
-                {matches.map((match) => (
-                    <Matchup
-                    matchId={matches.indexOf(match) + 1} 
-                    team1Name={match.team1Name} 
-                    team1Img={match.team1Img} 
-                    team2Name={match.team2Name} 
-                    team2Img={match.team2Img} 
-                    />
-                ))}
-                <button className="bg-teal-400 mb-6 w-2/4 h-12 text-white text-xl font-extrabold duration-300 hover:bg-teal-600 hover:shadow-sm">Submit Bets</button>
-            </div>
-            
+        {session ? (
+            <>
+                <h1 className="my-14 mb-24 text-center font-bold text-4xl">{session.user.name}'s Dashboard</h1>
+                <div className="flex flex-col items-center">
+                    {matches.map((match) => (
+                        <Matchup
+                        matchId={matches.indexOf(match) + 1} 
+                        team1Name={match.team1Name} 
+                        team1Img={match.team1Img} 
+                        team2Name={match.team2Name} 
+                        team2Img={match.team2Img} 
+                        />
+                    ))}
+                    <button className="bg-teal-400 mb-6 w-2/4 h-12 text-white text-xl font-extrabold duration-300 hover:bg-teal-600 hover:shadow-sm">Submit Bets</button>
+                </div>
+            </>
+        ) : (
+            <>
+                <h1 className="text-lg">You need to be signed in to access your dashboard.</h1>
+            </>
+        )}
         </div>
-    )
+     )
     }
-
-//   return (
-//     <div className="flex flex-col justify-center">
-//         <Navbar />
-//         <h1 className="my-14 mb-24 text-center font-bold text-4xl">Your bets</h1>
-//         <div className="flex flex-col items-center">
-//             <Matchup />
-//             <Matchup />
-//             <button className="bg-teal-400 my-6 w-2/4 h-12 text-white text-xl font-extrabold duration-300 hover:bg-teal-600 hover:shadow-sm">Submit Bets</button>
-//         </div>
-//     </div>
-//   )
-// }
