@@ -38,6 +38,7 @@ export default function Dashboard() {
     async function addBet() {
         console.log("clicked")
         for (item of bets) {
+            console.log(item);
             try {
                 console.log("try")
                 const docRef = await addDoc(collection(db, "bets"), {
