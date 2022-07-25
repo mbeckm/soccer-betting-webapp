@@ -1,9 +1,8 @@
 import { useSession } from 'next-auth/react';
 import React, { useEffect, useState } from 'react'
-import { tokenToString } from 'typescript';
 import Matchup from './components/Matchup'
-import { db } from '../firebase'
-import { addDoc, serverTimestamp } from 'firebase/firestore';
+import { db } from '../firebase';
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 
 
 export default function Dashboard() {
@@ -36,12 +35,24 @@ export default function Dashboard() {
         })
     }
 
-    // const docRef = await addDoc(collection(db, 'bets'), {
-    //     username: session.user.username,
-    //     matchid: null,
-    //     bet: null,
-    //     timestamp: serverTimestamp(),
-    // })
+    async function addBet() {
+        console.log("clicked")
+        for (item of bets) {
+            try {
+                console.log("try")
+                const docRef = await addDoc(collection(db, "bets"), {
+                  match_id: item.matchId,
+                  user_email: item.user,
+                  result: item.result,
+                  timestamp: serverTimestamp(),
+                });
+                console.log("Document written with ID: ", docRef.id);
+              } catch (e) {
+                console.error("Error adding document: ", e);
+              }
+        }
+
+        };
 
     return (
         <div className="flex flex-col">
@@ -61,7 +72,7 @@ export default function Dashboard() {
                         user={session.user.email} 
                         />
                     ))}
-                    <button onClick={() => {console.log(bets)}}className="bg-teal-400 mb-6 w-2/4 h-12 text-white text-xl font-extrabold duration-300 hover:bg-teal-600 hover:shadow-sm">Submit Bets</button>
+                    <button onClick={() => addBet()}className="bg-teal-400 mb-6 w-2/4 h-12 text-white text-xl font-extrabold duration-300 hover:bg-teal-600 hover:shadow-sm">Submit Bets</button>
                 </div>
             </>
         ) : (
