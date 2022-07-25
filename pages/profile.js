@@ -7,7 +7,7 @@ function profile() {
   return (
     <div>
         {session ? (
-            <UserBetsList />
+            <UserBetsList user_email={session.user.email} />
                     ) : (
             <p>You must be logged in to see your bets.</p>
                     )}
