@@ -3,8 +3,10 @@ import Team from './Team'
 
 export default function Matchup(props) {
   function testBet(setBets, result) {
-    props.setBets(props.bets.push({user: props.user, match: props.matchId, result: result}));
-    console.log(props.bets)
+    console.log(Array.isArray(props.bets));
+    props.setBets([...props.bets, {user: props.user, match: props.matchId, result: result}]);
+    console.log(props.bets);
+    console.log(Array.isArray(props.bets));
   }
   return (
     <div className="mb-16 p-8 w-full lg:w-3/4 border border-solid flex flex-col items-center">

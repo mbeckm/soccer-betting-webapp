@@ -35,7 +35,6 @@ export default function Dashboard() {
             'team2Img':element.Team2.TeamIconUrl,
         })
     }
-    console.log(matches);
 
     // const docRef = await addDoc(collection(db, 'bets'), {
     //     username: session.user.username,
@@ -62,7 +61,7 @@ export default function Dashboard() {
                         user={session.user.email} 
                         />
                     ))}
-                    <button className="bg-teal-400 mb-6 w-2/4 h-12 text-white text-xl font-extrabold duration-300 hover:bg-teal-600 hover:shadow-sm">Submit Bets</button>
+                    <button onClick={() => {console.log(bets)}}className="bg-teal-400 mb-6 w-2/4 h-12 text-white text-xl font-extrabold duration-300 hover:bg-teal-600 hover:shadow-sm">Submit Bets</button>
                 </div>
             </>
         ) : (
