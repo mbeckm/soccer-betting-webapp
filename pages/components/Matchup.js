@@ -3,7 +3,7 @@ import Team from './Team'
 
 export default function Matchup(props) {
   function testBet(setBets, result) {
-    props.setBets([...props.bets, {user: props.user, match: props.matchId, result: result}]);
+    props.setBets(props.bets.push({user: props.user, match: props.matchId, result: result}));
     console.log(props.bets)
   }
   return (
