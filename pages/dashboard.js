@@ -36,15 +36,12 @@ export default function Dashboard() {
     }
 
     async function addBet() {
-        console.log("clicked")
-        for (item of bets) {
-            console.log(item);
+        for (let count = 0; count<bets.length ;count++) {
             try {
-                console.log("try")
                 const docRef = await addDoc(collection(db, "bets"), {
-                  match_id: item.matchId,
-                  user_email: item.user,
-                  result: item.result,
+                  match_id: bets[count].matchId,
+                  user_email: bets[count].user,
+                  result: bets[count].result,
                   timestamp: serverTimestamp(),
                 });
                 console.log("Document written with ID: ", docRef.id);
@@ -63,7 +60,8 @@ export default function Dashboard() {
                 <div className="flex flex-col items-center">
                     {matches.map((match) => (
                         <Matchup
-                        matchId={matches.indexOf(match) + 1} 
+                        matchId={matches.indexOf(match) + 1}
+                        matchIdServer={match.id} 
                         team1Name={match.team1Name} 
                         team1Img={match.team1Img} 
                         team2Name={match.team2Name} 
