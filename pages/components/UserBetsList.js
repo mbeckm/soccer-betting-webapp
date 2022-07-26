@@ -21,8 +21,6 @@ export default function UserBetsList(props) {
       getBets();
 
     }, []);
-    console.log(bets);
-    // console.log("bets");
    
     
   return (
