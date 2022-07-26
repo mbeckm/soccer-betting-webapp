@@ -11,7 +11,7 @@ export default function Matchup(props) {
     // if (props.bets.some(e => e.matchId === this.matchId)) {
     // true: replace the "result" value with the new value
     // false: add value to state
-    props.setBets([...props.bets, {user: props.user, matchId: props.matchIdServer, result: result}]);
+    props.setBets([...props.bets, {user: props.user, matchId: props.matchIdServer, result: result, betWon: false,}]);
   }
   return (
     <div className="mb-16 p-8 w-full lg:w-3/4 border border-solid flex flex-col items-center">

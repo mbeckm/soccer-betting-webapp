@@ -24,15 +24,31 @@ export default function UserBetsList(props) {
    
     
   return (
-    <div>
-        <p>yooo</p>
+    <div className="p-10">
+      <div className=" py-5 px-3 my-3 border border-solid bg-slate-800 text-slate-100 flex flex-row text-left">
+        <p className="mr-10 w-24 font-bold">Match ID</p>
+        {/* Get matchup from api via match id */}
+        <p className="mr-10 w-72 font-bold">Matchup</p>
+        {/* Get bet from db */}
+        <p className="mr-10 w-72 font-bold">Your bet</p>
+        {/* Get result from api via match id */}
+        <p className="mr-10 w-72 font-bold">Game result</p>
+        {/* Get betWon from db and check if its true */}
+        <p className="font-bold">Outcome</p>
+      </div>
         {bets.map((bet) => (
-          <>
-            <p>{bet.match_id}</p>
-            <p>{bet.user_email}</p>
-            <p>{bet.result}</p>
+          <div className=" py-5 px-3 my-3 border border-solid shadow-sm duration-300 flex flex-row text-left hover:shadow-lg">
+            <p className="mr-10 w-24">{bet.match_id}</p>
+            {/* Get matchup from api via match id */}
+            <p className="mr-10 w-72">Bayern vs. Frankfurt</p>
+            {/* Get bet from db */}
+            <p className="mr-10 w-72">{bet.result}</p>
+            {/* Get result from api via match id */}
+            <p className="mr-10 w-72">Bayern</p>
+            {/* Get betWon from db and check if its true */}
+            <p className="">WON! ✔️</p>
 
-          </>
+          </div>
           )
         )}
     </div>

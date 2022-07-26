@@ -17,7 +17,7 @@ export default function Navbar() {
             {session ? (
                 <>
                     <a href="../dashboard">
-                        <p className="ml-5 cursor-pointer duration-300 hover:text-slate-400">Dashboard</p>
+                        <p className="ml-5 cursor-pointer duration-300 hover:text-slate-400">Place Bets</p>
                     </a>
                     <div onClick={signOut} className="ml-5 py-1 px-3 duration-300 rounded-md cursor-pointer hover:bg-slate-800 hover:shadow-md flex items-center">
                         <p>{session?.user?.name}</p>

@@ -18,6 +18,7 @@ export default NextAuth({
   callbacks: {
     async session({ session, token, user }) {
       session.user.username = session.user.name.split(' ').join("").toLocaleLowerCase();
+      session.user.firstname = session.user.name.split(' ')[0]
       session.user.uid = token.sub;
       return session;
     }

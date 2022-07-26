@@ -56,7 +56,7 @@ export default function Dashboard() {
         <div className="flex flex-col">
         {session ? (
             <>
-                <h1 className="my-14 mb-24 text-center font-bold text-4xl">{session.user.name}'s Dashboard</h1>
+                <h1 className="my-14 mb-24 text-center font-bold text-4xl">{session.user.firstname}, place your bets!</h1>
                 <div className="flex flex-col items-center">
                     {matches.map((match) => (
                         <Matchup
